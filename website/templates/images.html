@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Images</title>
+</head>
+
+<form action="{{ url_for('selected_images') }} " method="post">
+  <select multiple name="imagesSelection" size="10">
+      {% for item in filenames %}
+      <option>{{ item[0] }}</option>
+      {% endfor %}
+  </select>
+    <button type="submit">Submit</button>
+</form>
+
+<br>
+
+<table border="1">
+    <tr>
+        <th>Uploaded image</th>
+        <th>Processed image</th>
+    </tr>
+    {% for image in images_data %}
+    <tr>
+        <td><a href={{ image[0][1] }}>{{ image[0][0] }}</a></td>
+        {% if image[1][0] == "Not processed." %}
+        <td>Not processed.</td>
+        {% else %}
+        <td><a href={{ image[1][1] }}>{{ image[1][0] }}</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
