@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Strona główna</title>
-</head>
-<body>
-    <form method=POST enctype=multipart/form-data action="upload">
-        <input type=file name=myfile>
-        <input type=submit>
+<html>
+  <head>
+    <title>S3 POST Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <form action="https://django-staticfiles-turbodivx.s3.amazonaws.com/" method="post" enctype="multipart/form-data", action="upload">
+      <input type="hidden" name="key" value="uploads/${filename}"> <input type="hidden" name="AWSAccessKeyId" value="AKIAJLBH5GL2AVN4TU4A">
+      <input type="hidden" name="acl" value="private">
+      <input type="hidden" name="success_action_redirect" value="http://localhost/">
+      <input type="hidden" name="policy" value="CnsKImV4cGlyYXRpb24iOiAiMjAyMC0wMS0wMVQwMDowMDowMFoiLAogICJjb25kaXRpb25zIjogWwogICAgeyJidWNrZXQiOiAiZGphbmdvLXN0YXRpY2ZpbGVzLXR1cmJvZGl2eCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvIl0sCiAgICB7ImFjbCI6ICJwcml2YXRlIn0sCiAgICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHA6Ly9sb2NhbGhvc3QvIn0sCiAgICBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiaW1hZ2UvIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgMTA0ODU3Nl0KICBdCn0K">
+      <input type="hidden" name="signature" value="W/F2K+kDowi+zwiJOIu7aoDlps4=">
+      <input type="hidden" name="Content-Type" value="image/jpeg">
+      <!-- Include any additional input fields here -->
+      File to upload to S3: <input name="file" type="file">
+      <br>
+      <input type="submit" value="Upload File to S3">
     </form>
-</body>
+  </body>
 </html>

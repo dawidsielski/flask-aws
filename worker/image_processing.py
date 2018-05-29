@@ -61,16 +61,16 @@ while True:
     messages = queue.receive_messages(MaxNumberOfMessages=10, VisibilityTimeout=30)
     for m in messages:
         filename = m.body
-        new_filename = 'bw_' + filename
-        s3.Bucket(BUCKET_NAME).download_file(filename, filename)
+        new_filename = 'bw_' + filename.split('/')[-1]
+        s3.Bucket(BUCKET_NAME).download_file(filename, filename.split('/')[-1])
 
-        img = skimage.io.imread(filename)
+        img = skimage.io.imread(filename.split('/')[-1])
         new_img = rgb2gray(img)
         skimage.io.imsave(new_filename, new_img)
 
-        s3.Bucket(BUCKET_NAME).upload_file(new_filename, new_filename)
+        s3.Bucket(BUCKET_NAME).upload_file(new_filename, 'uploads/' + new_filename)
         log_image(sdb, SIMPLE_DB_DOMAIN_NAME, filename, 'True', time())
         m.delete()
 
-        os.remove(filename)
+        os.remove(filename.split('/')[-1])
         os.remove(new_filename)

@@ -59,8 +59,6 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload():
     file = request.files['myfile']
-    s3.Bucket(BUCKET_NAME).put_object(Key=file.filename, Body=file)
-
     log_image(sdb, SIMPLE_DB_DOMAIN_NAME, file.filename, 'False', time())
     return '<h1>File saved to S3</h1>'
 
@@ -71,16 +69,17 @@ def get_url(filename):
 
 @app.route('/images', methods=['GET', 'POST'])
 def images():
-    bucket_contents = s3.Bucket(BUCKET_NAME).objects.all()
+    bucket_contents = s3.Bucket(BUCKET_NAME).objects.filter(Prefix='uploads/')
 
-    filenames = [file.key for file in bucket_contents if not file.key.startswith('bw_')]
-    bw_filenames = [file.key for file in bucket_contents if file.key.startswith('bw_')]
+    filenames = [file.key for file in bucket_contents if not file.key.startswith('uploads/bw_')][1:]
+    bw_filenames = [file.key for file in bucket_contents if file.key.split('/')[-1].startswith('bw_')]
 
     urls = ['{}/{}'.format(BUCKET_URL, filename) for filename in filenames]
 
     images_data = []
     for filename in filenames:
-        processed = "bw_" + filename if "bw_" + filename in bw_filenames else 'Not processed.'
+        s_filename = filename.split('/')
+        processed = s_filename[0] + '/bw_' + s_filename[1] if s_filename[0] + '/bw_' + s_filename[1] in bw_filenames else 'Not processed.'
         processed_url = get_url(processed) if processed != 'No image.' else ''
         images_data.append([[filename, get_url(filename)], [processed, processed_url]])
 
