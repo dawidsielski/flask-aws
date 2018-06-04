@@ -88,14 +88,13 @@ def images():
         processed_url = get_url(processed) if processed != 'No image.' else ''
         images_data.append([[filename, get_url(filename)], [processed, processed_url]])
 
-    print(images_data)
-
     return render_template('images.html', filenames=list(zip(filenames, urls)), images_data=images_data)
 
 
 def get_selected_images(request):
     items = request.form.getlist('imagesSelection')
     for filename in items:
+        log_image(sdb, SIMPLE_DB_DOMAIN_NAME, filename, 'False', time())
         response = queue.send_message(MessageBody=filename)
     return items
 

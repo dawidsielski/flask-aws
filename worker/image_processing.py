@@ -8,7 +8,7 @@ from time import time
 def log_image(client, domain, filename, processed, timestamp):
     response = client.put_attributes(
         DomainName=domain,
-        ItemName='image',
+        ItemName=filename,
         Attributes=[
             {
                 'Name': 'image_name',
