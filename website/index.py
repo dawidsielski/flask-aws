@@ -63,6 +63,11 @@ def upload():
     return '<h1>File saved to S3</h1>'
 
 
+@app.route('/success')
+def successfull_upload():
+    return "<h1>File saved to S3</h1> <a href='/images'>Images</a>"
+
+
 def get_url(filename):
     return '{}/{}'.format(BUCKET_URL, filename)
 
@@ -82,6 +87,8 @@ def images():
         processed = s_filename[0] + '/bw_' + s_filename[1] if s_filename[0] + '/bw_' + s_filename[1] in bw_filenames else 'Not processed.'
         processed_url = get_url(processed) if processed != 'No image.' else ''
         images_data.append([[filename, get_url(filename)], [processed, processed_url]])
+
+    print(images_data)
 
     return render_template('images.html', filenames=list(zip(filenames, urls)), images_data=images_data)
 
