@@ -7,9 +7,9 @@
     <form action="https://django-staticfiles-turbodivx.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/${filename}"> <input type="hidden" name="AWSAccessKeyId" value="AKIAJLBH5GL2AVN4TU4A">
       <input type="hidden" name="acl" value="private">
-      <input type="hidden" name="success_action_redirect" value="http://localhost/success">
-      <input type="hidden" name="policy" value="CnsKImV4cGlyYXRpb24iOiAiMjAyMC0wMS0wMVQwMDowMDowMFoiLAogICJjb25kaXRpb25zIjogWwogICAgeyJidWNrZXQiOiAiZGphbmdvLXN0YXRpY2ZpbGVzLXR1cmJvZGl2eCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvIl0sCiAgICB7ImFjbCI6ICJwcml2YXRlIn0sCiAgICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHA6Ly9sb2NhbGhvc3Qvc3VjY2VzcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgImltYWdlLyJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDEwNDg1NzZdCiAgXQp9Cg==">
-      <input type="hidden" name="signature" value="gPZk3ysRVEBZ3hSGDF9zGyNcJDQ=">
+      <input type="hidden" name="success_action_redirect" value="http://dawidsielskilb-233042820.us-west-2.elb.amazonaws.com/success">
+      <input type="hidden" name="policy" value="CnsKImV4cGlyYXRpb24iOiAiMjAyMC0wMS0wMVQwMDowMDowMFoiLAogICJjb25kaXRpb25zIjogWwogICAgeyJidWNrZXQiOiAiZGphbmdvLXN0YXRpY2ZpbGVzLXR1cmJvZGl2eCJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvIl0sCiAgICB7ImFjbCI6ICJwcml2YXRlIn0sCiAgICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHA6Ly9kYXdpZHNpZWxza2lsYi0yMzMwNDI4MjAudXMtd2VzdC0yLmVsYi5hbWF6b25hd3MuY29tL3N1Y2Nlc3MifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICJpbWFnZS8iXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCAxMDQ4NTc2XQogIF0KfQo=">
+      <input type="hidden" name="signature" value="JDWG/JUm3ZBJLH/HzWtxE5m3Xh4=">
       <input type="hidden" name="Content-Type" value="image/jpeg">
       <!-- Include any additional input fields here -->
       File to upload to S3: <input name="file" type="file">
